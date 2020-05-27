@@ -1,3 +1,7 @@
 # Typing_Speed_Test
 
-HTML5, CSS3 and JavaScript
+A simple and effective test to check user typing speed.
+Application built using
+ * HTML5
+ * CSS3
+ * JavaScript
