@@ -5,6 +5,10 @@ const resetButton = document.querySelector("#reset");
 const theTimer = document.querySelector(".timer");
 
 var timer = [0, 0, 0, 0];
+var interval;
+var timerRunning = false;
+
+
 // Add leading zero to numbers 9 or below (purely for aesthetics):
 function leadingZero(time) {
     //converts value inside time to a string consisting of  0time eg. 09
@@ -33,6 +37,7 @@ function spellCheck() {
     
     if (textEntered == originText) {    
         testWrapper.style.borderColor = "#429890";
+        clearInterval(interval);
     } else {
         if (textEntered == originTextMatch) {
             testWrapper.style.borderColor = "#65CCf3";
@@ -46,8 +51,11 @@ function spellCheck() {
 function start(){
     //how much content in box. if content = 0 set timer = 0
     let textEnteredLength = testArea.value.length;
-    if (textEnteredLength === 0){
-        setInterval(runTimer, 10); //run every 1/1000 of a second
+    if (textEnteredLength === 0 && !timerRunning){
+        //timerRunning to counter a bug: if text is cleared and text entered the start function would begin. to ensure 
+        //timer start function increements only once we use this timerRunning concept.
+        timerRunning = true;
+        interval = setInterval(runTimer, 10); //run every 1/1000 of a second
       }
     console.log(textEnteredLength);
 }
