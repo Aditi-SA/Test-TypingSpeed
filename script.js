@@ -6,24 +6,40 @@ const theTimer = document.querySelector(".timer");
 
 var timer = [0, 0, 0, 0];
 // Add leading zero to numbers 9 or below (purely for aesthetics):
-
+function leadingZero(time) {
+    //converts value inside time to a string consisting of  0time eg. 09
+    //js conersters final result to time towe retain a number time datatype
+    if (time <= 9) {
+        time = "0" + time;
+    }
+    return time;
+}
 
 // Run a standard minute/second/hundredths timer:
-function runTimer(){
-    let currentTime = timer[0] + ":" + timer[1] + ":" + timer[2];
+function runTimer(){   
+    let currentTime = leadingZero(timer[0]) + ":" + leadingZero(timer[1]) + ":" + leadingZero(timer[2]);
     theTimer.innerHTML = currentTime;
     timer[3]++;
 
     timer[0] = Math.floor((timer[3]/100)/60);
     timer[1] = Math.floor((timer[3]/100) - (timer[0] * 60));
-    timer[2] = Math.floor(timer[3] - (timer[1] * 100) - (timer[0] * 6000));
-    
+    timer[2] = Math.floor(timer[3] - (timer[1] * 100) - (timer[0] * 6000));    
 }
 
 // Match the text entered with the provided text on the page:
 function spellCheck() {
     let textEntered = testArea.value;
-    console.log(textEntered);
+    let originTextMatch = originText.substring(0,textEntered.length);
+    
+    if (textEntered == originText) {    
+        testWrapper.style.borderColor = "#429890";
+    } else {
+        if (textEntered == originTextMatch) {
+            testWrapper.style.borderColor = "#65CCf3";
+        } else{            
+            testWrapper.style.borderColor = "#E95D0F";
+        }
+    }
 }
 
 // Start the timer:
