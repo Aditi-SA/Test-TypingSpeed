@@ -62,11 +62,22 @@ function start(){
 
 // Reset everything:
 function reset() {
-    console.log('Reset button clicked');
+    console.log("hitting reset");
+    clearInterval(interval);
+    interval = null;
+    timer = [0,0,0,0];
+    timerRunning = false;
+
+    //front end of the app
+    testArea.value = "";
+    theTimer.innerHTML = "00:00:00";
+    testWrapper.style.borderColor = "grey";
 }
 
 
 // Event listeners for keyboard input and the reset button:
 testArea.addEventListener("keypress", start, false);
 testArea.addEventListener("keyup", spellCheck, false);
-resetButton.addEventListener.length("click", reset, false)
+resetButton.addEventListener("click", reset, false)
+
+
